@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Opravdan_dev_branch_vova</string>
+    <string name="app_name">Opravdan</string>
     <string name="re_gen">Сгенерить ещё</string>
     <string name="go_to_hist">Перейти к истории</string>
     <string name="return_to_start">вернуться к начальному экрану</string>
