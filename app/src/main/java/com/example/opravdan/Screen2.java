@@ -21,7 +21,7 @@ public class Screen2 extends AppCompatActivity {
     TextView text1, text2;
     String[] results;
 
-    getText gt = new getText();
+    String user_text_prompt;
 
     // НУЖНО ТОЛЬКО ПРИ РАЗРАБОТКЕ
     boolean disable_ai = false;
@@ -31,7 +31,11 @@ public class Screen2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 //        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_screen2);
+
+        user_text_prompt = getIntent().getStringExtra("user_text_prompt");
+
         if (!disable_ai) {
+            getText gt = new getText(user_text_prompt);
             gt.execute();
             try {
                 Thread.sleep(4000);
@@ -68,7 +72,7 @@ public class Screen2 extends AppCompatActivity {
 
         Toast.makeText(this, "Добавлено в избранное", Toast.LENGTH_SHORT).show();
 
-        String prompt = MainActivity.returnText();  // Название файла
+        String prompt = user_text_prompt;  // Название файла
         String apology = apology_dict.get(heart_id);  // Текст для записи
         File_work(prompt, apology);
     }

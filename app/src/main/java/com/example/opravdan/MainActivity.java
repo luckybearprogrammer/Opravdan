@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
     Button buttonStart;
-    static EditText editText;
+    EditText editText;
 
 
     @Override
@@ -28,15 +28,17 @@ public class MainActivity extends AppCompatActivity {
         editText = findViewById(R.id.editText);
     }
 
-    public static String returnText() {
+    public String returnText() {
         return editText.getText().toString();
     }
 
     public void clickStart(View view) {
+        String user_text_prompt = returnText();
         if (!(editText.getText().toString().isEmpty())){
             Intent intent = new Intent(MainActivity.this, Screen2.class);
+            intent.putExtra("user_text_prompt", user_text_prompt);
             startActivity(intent);
-            Toast.makeText(this, returnText(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, user_text_prompt, Toast.LENGTH_SHORT).show();
         }
     }
 }

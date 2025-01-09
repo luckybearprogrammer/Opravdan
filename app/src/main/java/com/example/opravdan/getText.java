@@ -1,8 +1,5 @@
 package com.example.opravdan;
 
-
-import static com.example.opravdan.MainActivity.returnText;
-
 import android.os.AsyncTask;
 
 import org.json.JSONArray;
@@ -19,17 +16,21 @@ import java.nio.charset.StandardCharsets;
 
 
 public class getText extends AsyncTask<Void, Void, String> {
+
     StringBuilder response = new StringBuilder();
     String answer;
+    String user_text_prompt;
 
-
+    public getText(String user_text_prompt) {
+        this.user_text_prompt = user_text_prompt;
+    }
 
     @Override
     protected String doInBackground(Void... params) {
         try {
 
             String requestUrl = "https://api.together.xyz/v1/chat/completions";
-            String situatoin = returnText();
+            String situatoin = user_text_prompt;
             System.out.println(situatoin);
             String userMessage =
                     "Мне нужно придумать 2 коротких оправдания для ситуации (далее написана ситуация на английском)"+situatoin+", но что бы оно было максимально забавным, нелепым и смешным в начале оправдания унжно написать <opstart>, в конце оправдания нужно написать <opend>" +
