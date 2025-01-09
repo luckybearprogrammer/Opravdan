@@ -17,10 +17,10 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.023"
+        app:layout_constraintHorizontal_bias="0.427"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.975" />
+        app:layout_constraintVertical_bias="0.938" />
 
     <ImageView
         android:id="@+id/open_history"
@@ -30,37 +30,37 @@
         android:onClick="open_history_OnClick"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.881"
+        app:layout_constraintHorizontal_bias="0.551"
         app:layout_constraintStart_toEndOf="@+id/buttonRestart"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.975"
+        app:layout_constraintVertical_bias="0.938"
         app:srcCompat="@drawable/image_stars" />
 
     <ImageView
         android:id="@+id/imageBack"
-        android:layout_width="59dp"
-        android:layout_height="59dp"
+        android:layout_width="66dp"
+        android:layout_height="81dp"
         android:contentDescription="@string/return_to_start"
         android:onClick="back"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.014"
+        app:layout_constraintEnd_toStartOf="@+id/buttonRestart"
+        app:layout_constraintHorizontal_bias="0.64"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023"
+        app:layout_constraintVertical_bias="0.94"
         app:srcCompat="@drawable/button_back" />
 
     <TextView
         android:id="@+id/text2"
-        android:layout_width="350dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
+        android:layout_marginStart="16dp"
         android:text="@string/apology2"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text1"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.285" />
 
     <ImageView
         android:id="@+id/heart1"
@@ -75,10 +75,10 @@
         app:layout_constraintBottom_toBottomOf="@+id/text1"
 
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.294"
         app:layout_constraintStart_toEndOf="@+id/text1"
         app:layout_constraintTop_toTopOf="@+id/text1"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintVertical_bias="0.958"
         app:srcCompat="@drawable/heart" />
 
     <ImageView
@@ -93,7 +93,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/text2"
 
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.294"
         app:layout_constraintStart_toEndOf="@+id/text2"
         app:layout_constraintTop_toTopOf="@+id/text2"
         app:layout_constraintVertical_bias="1.0"
@@ -101,12 +101,23 @@
 
     <TextView
         android:id="@+id/text1"
-        android:layout_width="350dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="192dp"
         android:text="@string/apology1"
         android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ваши оправдания"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toTopOf="@+id/text1"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
