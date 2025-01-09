@@ -49,7 +49,7 @@ public class FileHandler {
             return "Файл не найден.";
         }
 
-        return "Название файла: " + filename + "\nСодержимое:\n" + fileContents.toString().trim();
+        return fileContents.toString().trim();
     }
 
     public static boolean deleteFile(Context context, String prompt) {
@@ -66,9 +66,6 @@ public class FileHandler {
     public static File[] listFilesInDirectory(Context context) {
         File directory = context.getFilesDir();
 
-        // Получаем массив файлов в этой директории
-        File[] files = directory.listFiles();
-
-        return files;
+        return directory.listFiles();
     }
 }

@@ -9,8 +9,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-
-
 public class MainActivity extends AppCompatActivity {
     Button buttonStart;
     static EditText editText;
@@ -30,12 +28,12 @@ public class MainActivity extends AppCompatActivity {
         editText = findViewById(R.id.editText);
     }
 
-    public static String returnText(){
+    public static String returnText() {
         return editText.getText().toString();
     }
 
     public void clickStart(View view) {
-        if (!(editText.getText().toString().equals(""))){
+        if (!(editText.getText().toString().isEmpty())){
             Intent intent = new Intent(MainActivity.this, Screen2.class);
             startActivity(intent);
             Toast.makeText(this, returnText(), Toast.LENGTH_SHORT).show();

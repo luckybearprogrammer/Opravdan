@@ -1,6 +1,5 @@
 package com.example.opravdan;
 
-
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -14,42 +13,40 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.concurrent.TimeUnit;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Screen2 extends AppCompatActivity {
-    int index = 1;
     TextView text1, text2;
     String[] results;
 
     getText gt = new getText();
+
+    // НУЖНО ТОЛЬКО ПРИ РАЗРАБОТКЕ
+    boolean disable_ai = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_screen2);
-        gt.execute();
-        try {
-            // Задержка на 3 секунды
-            Thread.sleep(4000);
-        } catch (InterruptedException e) {
-            // Обработка исключения
-            System.out.println("Поток был прерван: " + e.getMessage());
-            // Восстановление статуса прерывания
-            Thread.currentThread().interrupt();
+        if (!disable_ai) {
+            gt.execute();
+            try {
+                Thread.sleep(4000);
+            } catch (InterruptedException e) {
+                // Обработка исключения
+                System.out.println("Поток был прерван: " + e.getMessage());
+                // Восстановление статуса прерывания
+                Thread.currentThread().interrupt();
+            }
+            results = extractTexts(gt.answer);
+            text1 = findViewById(R.id.text1);
+            text2 = findViewById(R.id.text2);
+            text1.setText(results[0]);
+            text2.setText(results[1]);
         }
-        results = extractTexts(gt.answer);
-        text1 = findViewById(R.id.text1);
-        text2 = findViewById(R.id.text2);
-        text1.setText(results[0]);
-        text2.setText(results[1]);
-
-
-//        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-//            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-//            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-//            return insets;
-//        });
     }
 
 
@@ -63,18 +60,25 @@ public class Screen2 extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void File_work() {
-        String prompt = "Помогите1";  // Название файла
-        String apology = "This is my apology.";  // Текст для записи
+    public void OnClickHeart(View v) {
+        String heart_id = "" + v.getId();
+        Map<String, String> apology_dict = new HashMap<>();
+        apology_dict.put("2131230932", ((TextView) findViewById(R.id.text1)).getText().toString());
+        apology_dict.put("2131230933", ((TextView) findViewById(R.id.text2)).getText().toString());
 
+        Toast.makeText(this, "Добавлено в избранное", Toast.LENGTH_SHORT).show();
+
+        String prompt = MainActivity.returnText();  // Название файла
+        String apology = apology_dict.get(heart_id);  // Текст для записи
+        File_work(prompt, apology);
+    }
+
+    public void File_work(String prompt, String apology) {
         FileHandler.saveApologyToFile(getApplicationContext(), prompt, apology);
         String res = FileHandler.readFileContents(getApplicationContext(), prompt);
         if (res.equals("Файл не найден.")) {
             Toast.makeText(this, "Почему то нет файла ¯\\_(ツ)_/¯", Toast.LENGTH_SHORT).show();
         }
-//        if (!FileHandler.deleteFile(getApplicationContext(), prompt)) {
-//            Toast.makeText(this, "Файл не найден", Toast.LENGTH_SHORT).show();
-//        }
     }
 
     public static String[] extractTexts(String input) {

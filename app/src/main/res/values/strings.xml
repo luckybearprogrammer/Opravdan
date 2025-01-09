@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Opravdan_dev_branch_vova</string>
+    <string name="re_gen">Сгенерить ещё</string>
+    <string name="go_to_hist">Перейти к истории</string>
+    <string name="return_to_start">вернуться к начальному экрану</string>
+    <string name="apology1">Мы пытались использовать метод \'кафеин-инжекции\', чтобы работать быстрее, но оказалось, что это работает только на кофе-машинах.</string>
+    <string name="apology2">Мы пытались использовать новую технологию, которая позволяла нам работать в два раза быстрее, но оказалось, что она работает в два раза медленнее.</string>
+    <string name="close_hist">Закрыть историю</string>
+    <string name="gen_apology">Сгенерировать оправдание</string>
+    <string name="write_your_situation">Введите вашу ситуацию</string>
+    <string name="add_to_favorites">Добавить в избранное</string>
 </resources>
