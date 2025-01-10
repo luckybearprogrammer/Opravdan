@@ -1,5 +1,7 @@
 package com.example.opravdan;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -94,5 +96,25 @@ public class Screen2 extends AppCompatActivity {
         }
 
         return extractedTexts.toArray(new String[0]);
+    }
+
+    public void clickText1(View view) {
+        ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+        // Создаем объект ClipData с текстом из TextView
+        ClipData clip = ClipData.newPlainText("label", text1.getText());
+        // Устанавливаем созданный ClipData в буфер обмена
+        clipboard.setPrimaryClip(clip);
+        // Показываем уведомление о том, что текст скопирован
+        Toast.makeText(getApplicationContext(), "Текст скопирован в буфер обмена", Toast.LENGTH_SHORT).show();
+    }
+
+    public void clickText2(View view) {
+        ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+        // Создаем объект ClipData с текстом из TextView
+        ClipData clip = ClipData.newPlainText("label", text2.getText());
+        // Устанавливаем созданный ClipData в буфер обмена
+        clipboard.setPrimaryClip(clip);
+        // Показываем уведомление о том, что текст скопирован
+        Toast.makeText(getApplicationContext(), "Текст скопирован в буфер обмена", Toast.LENGTH_SHORT).show();
     }
 }
