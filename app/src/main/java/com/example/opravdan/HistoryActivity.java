@@ -11,14 +11,20 @@ import android.widget.Toast;
 import java.io.File;
 import java.util.ArrayList;
 
+import android.util.Log;
+
+// TODO: Почему-то есть проблема с null. То файл имеет имя null, то оправдания
+
 public class HistoryActivity extends Activity {
+    private static final String TAG = "HistoryActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
         // Сделать получение имен из имен файлов промтов
         File[] files = FileHandler.listFilesInDirectory(getApplicationContext());
-        if (files == null) {
+
+        if (files.length == 0) {
             Toast.makeText(this, "Нет файлов ¯\\_(ツ)_/¯", Toast.LENGTH_SHORT).show();
         }
         ArrayList<String> prompts = new ArrayList<>();
@@ -26,6 +32,7 @@ public class HistoryActivity extends Activity {
             if (file.getName().equals("profileInstalled"))
                 continue;
             String prompt = file.getName().replace(".txt", "");
+            Log.d(TAG, file.getName());
             prompts.add(prompt);
         }
 
@@ -41,9 +48,12 @@ public class HistoryActivity extends Activity {
             // Получаем выбранный элемент
             String selectedItem = (String) parent.getItemAtPosition(position);
 
-            System.out.println(FileHandler.readFileContents(getApplicationContext(), selectedItem));
-
             String[] apologies = FileHandler.readFileContents(getApplicationContext(), selectedItem).split("/n");
+
+//            if (apologies.length == 1) {
+//                Toast.makeText(this, "Нет оправданий ¯\\_(ツ)_/¯", Toast.LENGTH_SHORT).show();
+//                apologies[0] = "Нет оправданий ¯\\_(ツ)_/¯";
+//            }
 
             ArrayAdapter<String> apologies_adapter = new ArrayAdapter<>(HistoryActivity.this,
                     android.R.layout.simple_list_item_1, apologies);

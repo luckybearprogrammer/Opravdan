@@ -9,6 +9,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+// TODO: Как будто есть проблема с лишними пробелами и переводами строк. Наверное стоит их убирать
+
 public class MainActivity extends AppCompatActivity {
     Button buttonStart;
     EditText editText;

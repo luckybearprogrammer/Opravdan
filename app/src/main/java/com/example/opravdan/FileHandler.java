@@ -9,26 +9,29 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import android.util.Log;
 
 public class FileHandler {
+
+    private static final String TAG = "FileHandler";
 
     public static void saveApologyToFile(Context context, String prompt, String apology) {
         String filename = prompt + ".txt";
         File file = new File(context.getFilesDir(), filename);
 
         try {
+            FileOutputStream outputStream;
             if (file.exists()) {
-                FileOutputStream outputStream = new FileOutputStream(file, true);
+                outputStream = new FileOutputStream(file, true);
                 outputStream.write(("\n" + apology).getBytes());
-                outputStream.close();
             }
             else {
-                FileOutputStream outputStream = new FileOutputStream(file);
+                outputStream = new FileOutputStream(file);
                 outputStream.write(apology.getBytes());
-                outputStream.close();
             }
+            outputStream.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.e(TAG, "Ошибка при сохранении извинения в файл: " + e.getMessage(), e);
         }
     }
     public static String readFileContents(Context context, String prompt) {
@@ -43,9 +46,10 @@ public class FileHandler {
                     fileContents.append(line).append("\n");
                 }
             } catch (IOException e) {
-                e.printStackTrace();
+                Log.e(TAG, "Ошибка при чтении файла: " + e.getMessage(), e);
             }
         } else {
+            Log.w(TAG, "Файл не найден: " + filename);
             return "Файл не найден.";
         }
 
@@ -59,6 +63,7 @@ public class FileHandler {
         if (file.exists()) {
             return file.delete();
         } else {
+            Log.w(TAG, "Попытка удалить несуществующий файл: " + filename);
             return false; // Файл не найден
         }
     }

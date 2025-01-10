@@ -17,6 +17,8 @@ import java.util.regex.Pattern;
 import java.util.HashMap;
 import java.util.Map;
 
+// TODO: Иногда при нажатии на сердце приложение выкидывает тебя на activity_main.
+
 public class Screen2 extends AppCompatActivity {
     TextView text1, text2;
     String[] results;
@@ -24,7 +26,7 @@ public class Screen2 extends AppCompatActivity {
     String user_text_prompt;
 
     // НУЖНО ТОЛЬКО ПРИ РАЗРАБОТКЕ
-    boolean disable_ai = false;
+    boolean disable_ai = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
