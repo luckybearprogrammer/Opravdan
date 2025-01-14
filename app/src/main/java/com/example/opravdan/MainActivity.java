@@ -9,23 +9,14 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-// TODO: Как будто есть проблема с лишними пробелами и переводами строк. Наверное стоит их убирать
-
 public class MainActivity extends AppCompatActivity {
     Button buttonStart;
     EditText editText;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-//        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-//            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-//            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-//            return insets;
-//        });
         buttonStart = findViewById(R.id.buttonStart);
         editText = findViewById(R.id.editText);
     }
@@ -35,10 +26,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void clickStart(View view) {
-        String user_text_prompt = returnText();
-        if (!(editText.getText().toString().isEmpty())){
+        // Сделал удаление лишних пробелов в конце и начале промпта
+        // Сделал удаление переносов строк в промпте
+        String user_text_prompt = returnText().strip();
+        if (user_text_prompt.contains("\n")) {
+            user_text_prompt = user_text_prompt.replaceAll("\n", ". ");
+        }
+        if (!(returnText().isEmpty())){
             Intent intent = new Intent(MainActivity.this, Screen2.class);
             intent.putExtra("user_text_prompt", user_text_prompt);
+            intent.putExtra("is_not_generating_apologies", false);
             startActivity(intent);
             Toast.makeText(this, user_text_prompt, Toast.LENGTH_SHORT).show();
         }

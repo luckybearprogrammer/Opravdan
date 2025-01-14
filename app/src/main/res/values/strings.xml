@@ -9,4 +9,11 @@
     <string name="gen_apology">Сгенерировать оправдание</string>
     <string name="write_your_situation">Введите вашу ситуацию</string>
     <string name="add_to_favorites">Добавить в избранное</string>
+    <string name="added_to_favorites">Добавлено в избранное</string>
+    <string name="no_file">Почему то нет файла ¯\_(ツ)_/¯</string>
+    <string name="no_files">Нет файлов ¯\_(ツ)_/¯</string>
+    <string name="file_delete_failed">Не удалось удалить файл: </string>
+    <string name="file_deleted">Файл удален: </string>
+    <string name="delete">"Удалить"</string>
+    <string name="your_apologies">Ваши оправдания</string>
 </resources>

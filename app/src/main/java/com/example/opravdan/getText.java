@@ -41,7 +41,6 @@ public class getText extends AsyncTask<Void, Void, String> {
             String jsonData = "{ \"model\": \"meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo\", "
                     + "\"messages\": [{\"role\": \"user\", \"content\": \"" + userMessage + "\"}] }";
 
-
             URL url = new URL(requestUrl);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("POST");

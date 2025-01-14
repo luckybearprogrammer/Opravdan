@@ -3,7 +3,10 @@ package com.example.opravdan;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -17,6 +20,10 @@ import android.util.Log;
 
 public class HistoryActivity extends Activity {
     private static final String TAG = "HistoryActivity";
+
+    ArrayAdapter<String> prompts_adapter;
+    ArrayList<String> prompts;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,9 +32,9 @@ public class HistoryActivity extends Activity {
         File[] files = FileHandler.listFilesInDirectory(getApplicationContext());
 
         if (files.length == 0) {
-            Toast.makeText(this, "Нет файлов ¯\\_(ツ)_/¯", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.no_files), Toast.LENGTH_SHORT).show();
         }
-        ArrayList<String> prompts = new ArrayList<>();
+        prompts = new ArrayList<>();
         for (File file : files) {
             if (file.getName().equals("profileInstalled"))
                 continue;
@@ -37,7 +44,11 @@ public class HistoryActivity extends Activity {
         }
 
         ListView lv_prompts = findViewById(R.id.prompt_list_view);
-        ArrayAdapter<String> prompts_adapter = new ArrayAdapter<>(this,
+
+        // Регистрируем контекстное меню
+        registerForContextMenu(lv_prompts);
+
+        prompts_adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, prompts);
 
         lv_prompts.setAdapter(prompts_adapter);
@@ -45,25 +56,43 @@ public class HistoryActivity extends Activity {
         ListView lv_apologies = findViewById(R.id.apologies_list_view);
 
         lv_prompts.setOnItemClickListener((parent, view, position, id) -> {
-            // Получаем выбранный элемент
             String selectedItem = (String) parent.getItemAtPosition(position);
 
             String[] apologies = FileHandler.readFileContents(getApplicationContext(), selectedItem).split("/n");
-
-//            if (apologies.length == 1) {
-//                Toast.makeText(this, "Нет оправданий ¯\\_(ツ)_/¯", Toast.LENGTH_SHORT).show();
-//                apologies[0] = "Нет оправданий ¯\\_(ツ)_/¯";
-//            }
 
             ArrayAdapter<String> apologies_adapter = new ArrayAdapter<>(HistoryActivity.this,
                     android.R.layout.simple_list_item_1, apologies);
 
             lv_apologies.setAdapter(apologies_adapter);
-
-//                // Выполняем действие при нажатии
-//                Toast.makeText(HistoryActivity.this, "Вы выбрали: " + selectedItem, Toast.LENGTH_SHORT).show();
         });
     }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        menu.add(0, v.getId(), 0, getString(R.string.delete));
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        if (item.getTitle().equals("Удалить")) {
+            AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+            String fileName = prompts.get(info.position);
+            // Удаляем файл через FileHandler
+            boolean isDeleted = FileHandler.deleteFile(getApplicationContext(), fileName);
+
+            if (isDeleted) {
+                // Убираем элемент из списка и обновляем адаптер
+                prompts.remove(info.position);
+                prompts_adapter.notifyDataSetChanged();
+                Toast.makeText(this, getString(R.string.file_deleted) + " " + fileName, Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, getString(R.string.file_delete_failed) + " " + fileName, Toast.LENGTH_SHORT).show();
+            }
+        }
+        return super.onContextItemSelected(item);
+    }
+
     public void Prompt_OnClick(View vwk) {
         Intent intent = new Intent(HistoryActivity.this, Screen2.class);
         startActivity(intent);

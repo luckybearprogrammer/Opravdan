@@ -7,13 +7,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    tools:context=".Screen2">
+    android:background="@drawable/background"
+    tools:context=".MainActivity">
 
     <Button
         android:id="@+id/buttonStart"
         android:layout_width="227dp"
         android:layout_height="59dp"
-        android:text="Сгенерировать оправдание"
+        android:text="@string/gen_apology"
         android:onClick="clickStart"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,7 +28,9 @@
         android:layout_height="326dp"
         android:background="#33000000"
         android:gravity="center"
-        android:hint="Введите вашу ситуацию"
+        android:hint="@string/write_your_situation"
+        android:inputType="text"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/buttonStart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"

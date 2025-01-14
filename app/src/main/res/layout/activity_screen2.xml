@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context=".Screen2">
 
     <!--        android:onClick="clickRestart"-->
@@ -17,50 +18,52 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.023"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.975" />
+        app:layout_constraintVertical_bias="0.94" />
 
     <ImageView
         android:id="@+id/open_history"
-        android:layout_width="73dp"
-        android:layout_height="80dp"
+        android:layout_width="69dp"
+        android:layout_height="74dp"
         android:contentDescription="@string/go_to_hist"
         android:onClick="open_history_OnClick"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.881"
+        app:layout_constraintHorizontal_bias="0.469"
         app:layout_constraintStart_toEndOf="@+id/buttonRestart"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.975"
+        app:layout_constraintVertical_bias="0.931"
         app:srcCompat="@drawable/image_stars" />
 
     <ImageView
         android:id="@+id/imageBack"
-        android:layout_width="59dp"
-        android:layout_height="59dp"
+        android:layout_width="69dp"
+        android:layout_height="85dp"
         android:contentDescription="@string/return_to_start"
         android:onClick="back"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.014"
+        app:layout_constraintEnd_toStartOf="@+id/buttonRestart"
+        app:layout_constraintHorizontal_bias="0.702"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023"
+        app:layout_constraintVertical_bias="0.939"
         app:srcCompat="@drawable/button_back" />
 
     <TextView
         android:id="@+id/text2"
-        android:layout_width="350dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
+        android:layout_marginStart="16dp"
         android:text="@string/apology2"
         android:textSize="20sp"
+        android:textColor="@color/black"
+        android:onClick="clickText2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text1"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.285" />
 
     <ImageView
         android:id="@+id/heart1"
@@ -75,10 +78,10 @@
         app:layout_constraintBottom_toBottomOf="@+id/text1"
 
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.294"
         app:layout_constraintStart_toEndOf="@+id/text1"
         app:layout_constraintTop_toTopOf="@+id/text1"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintVertical_bias="0.958"
         app:srcCompat="@drawable/heart" />
 
     <ImageView
@@ -93,7 +96,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/text2"
 
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.294"
         app:layout_constraintStart_toEndOf="@+id/text2"
         app:layout_constraintTop_toTopOf="@+id/text2"
         app:layout_constraintVertical_bias="1.0"
@@ -101,14 +104,30 @@
 
     <TextView
         android:id="@+id/text1"
-        android:layout_width="350dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="192dp"
         android:text="@string/apology1"
         android:textSize="20sp"
+        android:textColor="@color/black"
+        android:onClick="clickText1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/your_apologies"
+        android:textSize="34sp"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/text1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.503" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
