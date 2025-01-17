@@ -34,9 +34,9 @@ public class HistoryActivity extends Activity {
         // Сделать получение имен из имен файлов промтов
         File[] files = FileHandler.listFilesInDirectory(getApplicationContext());
 
-        if (files.length == 0) {
-            Toast.makeText(this, getString(R.string.no_files), Toast.LENGTH_SHORT).show();
-        }
+//        if (files.length == 0) {
+//            Toast.makeText(this, getString(R.string.no_files), Toast.LENGTH_SHORT).show();
+//        }
         prompts = new ArrayList<>();
         for (File file : files) {
             if (file.getName().equals("profileInstalled"))
