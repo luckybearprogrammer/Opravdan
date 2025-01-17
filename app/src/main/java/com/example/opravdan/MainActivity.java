@@ -26,8 +26,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void clickStart(View view) {
-        // Сделал удаление лишних пробелов в конце и начале промпта
-        // Сделал удаление переносов строк в промпте
         String user_text_prompt = returnText().strip();
         if (!(returnText().isEmpty())){
             Intent intent = new Intent(MainActivity.this, Screen2.class);

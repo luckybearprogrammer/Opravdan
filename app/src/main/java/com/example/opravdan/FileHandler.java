@@ -48,7 +48,8 @@ public class FileHandler {
             } catch (IOException e) {
                 Log.e(TAG, "Ошибка при чтении файла: " + e.getMessage(), e);
             }
-        } else {
+        }
+        else {
             Log.w(TAG, "Файл не найден: " + filename);
             return "Файл не найден.";
         }
@@ -62,7 +63,8 @@ public class FileHandler {
 
         if (file.exists()) {
             return file.delete();
-        } else {
+        }
+        else {
             Log.w(TAG, "Попытка удалить несуществующий файл: " + filename);
             return false; // Файл не найден
         }

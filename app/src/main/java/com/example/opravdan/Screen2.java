@@ -20,10 +20,8 @@ import java.util.regex.Pattern;
 import java.util.HashMap;
 import java.util.Map;
 
-// TODO: Иногда при нажатии на сердце приложение выкидывает тебя на activity_main.
-
 public class Screen2 extends AppCompatActivity {
-    TextView text1 = null, text2 = null;
+    TextView text1, text2;
     String[] results;
 
     String user_text_prompt;
@@ -81,6 +79,7 @@ public class Screen2 extends AppCompatActivity {
 
     public void open_history_OnClick(View v) {
         Intent intent = new Intent(Screen2.this, HistoryActivity.class);
+        intent.putExtra("user_text_prompt", user_text_prompt);
         startActivity(intent);
     }
 
@@ -90,15 +89,20 @@ public class Screen2 extends AppCompatActivity {
     }
 
     public void OnClickHeart(View v) {
-        String heart_id = "" + v.getId();
+        int heart_id = v.getId();
+
+        String heart_name = getResources().getResourceEntryName(heart_id);
+
+//        Toast.makeText(this, heart_name, Toast.LENGTH_SHORT).show();
+
         Map<String, String> apology_dict = new HashMap<>();
-        apology_dict.put("2131230932", ((TextView) findViewById(R.id.text1)).getText().toString());
-        apology_dict.put("2131230933", ((TextView) findViewById(R.id.text2)).getText().toString());
+        apology_dict.put("heart1", ((TextView) findViewById(R.id.text1)).getText().toString());
+        apology_dict.put("heart2", ((TextView) findViewById(R.id.text2)).getText().toString());
 
         Toast.makeText(this, getString(R.string.added_to_favorites), Toast.LENGTH_SHORT).show();
 
         String prompt = user_text_prompt;  // Название файла
-        String apology = apology_dict.get(heart_id);  // Текст для записи
+        String apology = apology_dict.get(heart_name);  // Текст для записи
         File_work(prompt, apology);
     }
 

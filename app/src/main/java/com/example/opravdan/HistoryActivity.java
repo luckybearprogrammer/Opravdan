@@ -16,7 +16,6 @@ import java.util.ArrayList;
 
 import android.util.Log;
 
-// TODO: Почему-то есть проблема с null. То файл имеет имя null, то оправдания
 // TODO: Прятать опровдания после удаления промпта
 
 public class HistoryActivity extends Activity {
@@ -27,10 +26,15 @@ public class HistoryActivity extends Activity {
 
     ListView lv_apologies;
 
+    String user_text_prompt;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
+
+        user_text_prompt = getIntent().getStringExtra("user_text_prompt");
+
         // Сделать получение имен из имен файлов промтов
         File[] files = FileHandler.listFilesInDirectory(getApplicationContext());
 
@@ -98,6 +102,7 @@ public class HistoryActivity extends Activity {
 
     public void Prompt_OnClick(View vwk) {
         Intent intent = new Intent(HistoryActivity.this, Screen2.class);
+        intent.putExtra("user_text_prompt", user_text_prompt);
         startActivity(intent);
     }
 }
