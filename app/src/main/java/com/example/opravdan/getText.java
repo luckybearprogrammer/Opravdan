@@ -3,6 +3,8 @@ package com.example.opravdan;
 
 import static com.example.opravdan.MainActivity.returnText;
 
+import static com.example.opravdan.Private.API.API;
+
 import android.os.AsyncTask;
 
 import org.json.JSONArray;
@@ -17,12 +19,9 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
-
 public class getText extends AsyncTask<Void, Void, String> {
     StringBuilder response = new StringBuilder();
     String answer;
-
-
 
     @Override
     protected String doInBackground(Void... params) {
@@ -44,7 +43,7 @@ public class getText extends AsyncTask<Void, Void, String> {
             URL url = new URL(requestUrl);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("POST");
-            connection.setRequestProperty("Authorization", "Bearer 6db956cdf889ae71a0f4ff164dd30d0e95f4c6b0601a30498ea68449a15c6c46");
+            connection.setRequestProperty("Authorization", API);
             connection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
             connection.setDoOutput(true);
 
