@@ -17,12 +17,15 @@ import java.util.ArrayList;
 import android.util.Log;
 
 // TODO: Почему-то есть проблема с null. То файл имеет имя null, то оправдания
+// TODO: Прятать опровдания после удаления промпта
 
 public class HistoryActivity extends Activity {
     private static final String TAG = "HistoryActivity";
 
     ArrayAdapter<String> prompts_adapter;
     ArrayList<String> prompts;
+
+    ListView lv_apologies;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +56,7 @@ public class HistoryActivity extends Activity {
 
         lv_prompts.setAdapter(prompts_adapter);
 
-        ListView lv_apologies = findViewById(R.id.apologies_list_view);
+        lv_apologies = findViewById(R.id.apologies_list_view);
 
         lv_prompts.setOnItemClickListener((parent, view, position, id) -> {
             String selectedItem = (String) parent.getItemAtPosition(position);

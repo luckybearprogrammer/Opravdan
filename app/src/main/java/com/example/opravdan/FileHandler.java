@@ -18,7 +18,7 @@ public class FileHandler {
     public static void saveApologyToFile(Context context, String prompt, String apology) {
         String filename = prompt + ".txt";
         File file = new File(context.getFilesDir(), filename);
-
+        Log.i(TAG, apology);
         try {
             FileOutputStream outputStream;
             if (file.exists()) {
