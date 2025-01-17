@@ -19,7 +19,7 @@ public class FileHandler {
         String filename = prompt + ".txt";
         File file = new File(context.getFilesDir(), filename);
         if (file.exists()) {
-            for (String saved_apology : readFileContents(context, prompt).split("\n\n")){
+            for (String saved_apology : readFileContents(context, prompt).split("<next apology>")){
                 if (saved_apology.equals(apology)) {
                     Log.i(TAG, "Уже есть опровдание, поэтому сохранение пропущено");
                     return;
@@ -51,7 +51,8 @@ public class FileHandler {
             try (BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file)))) {
                 String line;
                 while ((line = reader.readLine()) != null) {
-                    fileContents.append(line).append("\n\n");
+                    line = "\n" + line;
+                    fileContents.append(line).append("<next apology>");
                 }
             } catch (IOException e) {
                 Log.e(TAG, "Ошибка при чтении файла: " + e.getMessage(), e);

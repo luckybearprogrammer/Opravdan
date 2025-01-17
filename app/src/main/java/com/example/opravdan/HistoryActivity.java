@@ -62,10 +62,11 @@ public class HistoryActivity extends Activity {
 
         lv_apologies = findViewById(R.id.apologies_list_view);
 
+        // Обработка нажатия
         lv_prompts.setOnItemClickListener((parent, view, position, id) -> {
             String selectedItem = (String) parent.getItemAtPosition(position);
 
-            String[] apologies = FileHandler.readFileContents(getApplicationContext(), selectedItem).split("/n");
+            String[] apologies = FileHandler.readFileContents(getApplicationContext(), selectedItem).split("<next apology>");
 
             ArrayAdapter<String> apologies_adapter = new ArrayAdapter<>(HistoryActivity.this,
                     android.R.layout.simple_list_item_1, apologies);
@@ -93,6 +94,7 @@ public class HistoryActivity extends Activity {
                 prompts.remove(info.position);
                 prompts_adapter.notifyDataSetChanged();
                 Toast.makeText(this, getString(R.string.file_deleted), Toast.LENGTH_SHORT).show();
+
             } else {
                 Toast.makeText(this, getString(R.string.file_delete_failed) + " " + fileName, Toast.LENGTH_SHORT).show();
             }
