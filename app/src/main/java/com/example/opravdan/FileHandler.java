@@ -18,6 +18,14 @@ public class FileHandler {
     public static void saveApologyToFile(Context context, String prompt, String apology) {
         String filename = prompt + ".txt";
         File file = new File(context.getFilesDir(), filename);
+        if (file.exists()) {
+            for (String saved_apology : readFileContents(context, prompt).split("\n\n")){
+                if (saved_apology.equals(apology)) {
+                    Log.i(TAG, "Уже есть опровдание, поэтому сохранение пропущено");
+                    return;
+                }
+            }
+        }
         Log.i(TAG, apology);
         try {
             FileOutputStream outputStream;
@@ -31,7 +39,7 @@ public class FileHandler {
             }
             outputStream.close();
         } catch (IOException e) {
-            Log.e(TAG, "Ошибка при сохранении извинения в файл: " + e.getMessage(), e);
+            Log.e(TAG, "Ошибка при сохранении оправдания в файл: " + e.getMessage(), e);
         }
     }
     public static String readFileContents(Context context, String prompt) {
@@ -43,7 +51,7 @@ public class FileHandler {
             try (BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file)))) {
                 String line;
                 while ((line = reader.readLine()) != null) {
-                    fileContents.append(line).append("\n");
+                    fileContents.append(line).append("\n\n");
                 }
             } catch (IOException e) {
                 Log.e(TAG, "Ошибка при чтении файла: " + e.getMessage(), e);

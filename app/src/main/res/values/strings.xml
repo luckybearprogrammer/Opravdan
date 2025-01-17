@@ -13,7 +13,7 @@
     <string name="no_file">Почему то нет файла ¯\_(ツ)_/¯</string>
     <string name="no_files">Нет файлов ¯\_(ツ)_/¯</string>
     <string name="file_delete_failed">Не удалось удалить файл: </string>
-    <string name="file_deleted">Файл удален: </string>
+    <string name="file_deleted">Файл удален</string>
     <string name="delete">"Удалить"</string>
     <string name="your_apologies">Ваши оправдания</string>
 </resources>

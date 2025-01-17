@@ -90,10 +90,7 @@ public class Screen2 extends AppCompatActivity {
 
     public void OnClickHeart(View v) {
         int heart_id = v.getId();
-
         String heart_name = getResources().getResourceEntryName(heart_id);
-
-//        Toast.makeText(this, heart_name, Toast.LENGTH_SHORT).show();
 
         Map<String, String> apology_dict = new HashMap<>();
         apology_dict.put("heart1", ((TextView) findViewById(R.id.text1)).getText().toString());

@@ -92,7 +92,7 @@ public class HistoryActivity extends Activity {
                 // Убираем элемент из списка и обновляем адаптер
                 prompts.remove(info.position);
                 prompts_adapter.notifyDataSetChanged();
-                Toast.makeText(this, getString(R.string.file_deleted) + " " + fileName, Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.file_deleted), Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(this, getString(R.string.file_delete_failed) + " " + fileName, Toast.LENGTH_SHORT).show();
             }
